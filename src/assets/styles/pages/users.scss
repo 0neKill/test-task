@@ -2,5 +2,13 @@
   display: flex;
   padding: 50px;
   gap: 40px;
+  height: 100%;
   overflow-x: auto;
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+
+  @media (max-width: 420px) {
+    padding: 0;
+  }
 }

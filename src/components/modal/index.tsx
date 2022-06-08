@@ -44,6 +44,15 @@ export const Modal: React.FunctionComponent<Props> = ({
         handlerClick();
     };
 
+    React.useEffect(() => {
+        if (visible) {
+            document.body.classList.add('no-scroll');
+        }
+        return () => {
+            document.body.classList.remove('no-scroll');
+        };
+    }, [visible]);
+
 
     return (
         <>

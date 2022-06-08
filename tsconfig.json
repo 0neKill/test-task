@@ -29,7 +29,10 @@
       "@hooks": [
         "./hooks/"
       ],
-      "@pages/*": [dist
+      "@services": [
+        "./services/"
+      ],
+      "@pages/*": [
         "./pages/*"
       ],
       "@helpers/*": [

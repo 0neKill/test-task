@@ -13,14 +13,11 @@ export const RouteEntryPoint: React.FunctionComponent = () => {
     return (
         <BrowserRouter>
             <Routes>
-                <Route element={
-                    <React.Suspense fallback={<Loading />}>
-                        <PublishedPages />
-                    </React.Suspense>
-                }>
+                <Route element={<React.Suspense fallback={<Loading />}>
+                    <PublishedPages />
+                </React.Suspense>}>
                     {routes}
                 </Route>
-                <Route path='*' element={<NotFound />} />
             </Routes>
         </BrowserRouter>
     );
