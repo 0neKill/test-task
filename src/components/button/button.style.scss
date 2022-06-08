@@ -1,0 +1,43 @@
+.button {
+  display: block;
+  border: 1px solid #5F5757;
+  border-radius: 5px;
+  height: 40px;
+  padding: 12px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  color: #ffffff;
+  font-size: 14px;
+  background-color: #6A97B0;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+  max-width: 260px;
+  width: 100%;
+  cursor: pointer;
+  text-align: center;
+
+  &:hover {
+    background-color: lighten(#6A97B0, 10);
+  }
+
+  &:active {
+    background-color: lighten(#6A97B0, 1);
+  }
+
+
+  &.disabled {
+    cursor: not-allowed !important;
+    background-color: lighten(#6A97B0, 20);
+
+    &:active {
+      background-color: lighten(#6A97B0, 20);
+
+    }
+
+    &:hover {
+      background-color: lighten(#6A97B0, 20);
+
+    }
+  }
+
+}
+
