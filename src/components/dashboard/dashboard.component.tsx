@@ -1,8 +1,10 @@
 import React from 'react';
-import { User } from '__types__/user';
-import { Cart, Input, Modal } from '@components';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Filter } from '__types__/dashboard';
+
+import { Cart, Input, Modal } from '@components';
+
+import type { User } from '__types__/user';
+import type { Filter } from '__types__/dashboard';
 
 
 interface PropsComponent {
@@ -27,26 +29,31 @@ const variant = {
 };
 
 export const DashboardComponent: React.FunctionComponent<PropsComponent> = ({
-                                                                           items,
-                                                                           title,
-                                                                           index,
-                                                                           isPending,
-                                                                           filterTerm,
-                                                                           searchTerm,
-                                                                           handlerSearch,
-                                                                           handlerRemoveItem,
-                                                                           handlerEditCartData,
-                                                                           handlerOnSelectFilter,
-
-                                                                       }) => {
+                                                                                items,
+                                                                                title,
+                                                                                index,
+                                                                                isPending,
+                                                                                filterTerm,
+                                                                                searchTerm,
+                                                                                handlerSearch,
+                                                                                handlerRemoveItem,
+                                                                                handlerEditCartData,
+                                                                                handlerOnSelectFilter,
+                                                                            }) => {
 
 
         return (
-            <motion.div className='dashboard' variants={variant} initial='initial' animate='animate' custom={index}>
+            <motion.div className='dashboard'
+                        variants={variant}
+                        initial='initial'
+                        animate='animate'
+                        custom={index}>
                 <h2 className='dashboard__title'>{title}</h2>
                 <div className='dashboard-container'>
                     <div className='dashboard-container__options'>
-                        <select className='options__filter' value={filterTerm} onChange={handlerOnSelectFilter}>
+                        <select className='options__filter'
+                                value={filterTerm}
+                                onChange={handlerOnSelectFilter}>
                             <option value='all'>All</option>
                             <option value='name'>Name</option>
                             <option value='email'>E-mail</option>
@@ -64,7 +71,8 @@ export const DashboardComponent: React.FunctionComponent<PropsComponent> = ({
                                         <AnimatePresence>
                                             {
                                                 items.map((item) => (
-                                                    <Cart key={item.id} item={item}
+                                                    <Cart key={item.id}
+                                                          item={item}
                                                           handlerRemoveItem={handlerRemoveItem} />
                                                 ))
                                             }

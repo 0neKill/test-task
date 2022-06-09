@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 import { Button } from '@components';
-
 import { Routes } from '@helpers/constants';
 
 const variants = {

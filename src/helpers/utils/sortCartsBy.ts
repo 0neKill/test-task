@@ -9,7 +9,7 @@ export const sortCartsBySearchValue = (items: Array<User>, value: string): Array
     );
 };
 
-export const sortCartsByFilter = (items: Array<User>, filter: Filter) => {
+export const sortCartsByFilter = (items: Array<User>, filter: Filter): Array<User> => {
     if (filter === 'all') {
         return items;
     } else {

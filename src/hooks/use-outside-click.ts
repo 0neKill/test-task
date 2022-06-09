@@ -3,16 +3,15 @@ import React from 'react';
 type UseOutsideClick = (init: boolean) => { refElementClick: React.RefObject<HTMLDivElement>, visible: boolean, handlerClick: () => void };
 
 export const useOutsideClick: UseOutsideClick = () => {
-    const refElementClick = React.useRef<HTMLDivElement>(null);
-
     const [visible, setVisible] = React.useState<boolean>(false);
+    const refElementClick = React.useRef<HTMLDivElement>(null);
 
     const handlerClick = () => {
         setVisible(state => !state);
     };
 
-    const handlerEventListener = (event: any) => {
-        if (refElementClick.current && !refElementClick.current.contains(event.target)) setVisible(false);
+    const handlerEventListener = (event: MouseEvent) => {
+        if (refElementClick.current && !refElementClick.current.contains(event.target as Node)) setVisible(false);
     };
 
     React.useEffect(() => {

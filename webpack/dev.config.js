@@ -32,7 +32,7 @@ exports.developmentConfiguration = {
         liveReload: true,
         port: devServerPort,
         open: true,
-        historyApiFallback: true
+        historyApiFallback: true,
     },
     plugins: [
         new HtmlWebpackPlugin({

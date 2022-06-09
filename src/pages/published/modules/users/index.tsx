@@ -1,12 +1,11 @@
 import React from 'react';
 
-import { Dashboard, Loading } from '@components';
 import { UserService } from '@services';
+import { Dashboard, Loading } from '@components';
 
 import type { Dashboard as IDashboard } from '__types__/dashboard';
 
 export const Users: React.FunctionComponent = () => {
-
     const [dashboards, setDashboards] = React.useState<IDashboard[]>([]);
     const [loading, setLoading] = React.useState<boolean>(true);
 
@@ -32,7 +31,6 @@ export const Users: React.FunctionComponent = () => {
                         />
                     )) : <Loading />
             }
-
         </section>
     );
 };

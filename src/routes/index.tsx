@@ -1,12 +1,11 @@
 import React from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
-
-import { createRoutes } from '@helpers/utils/createRoutes';
-import { Loading, NotFound } from '@components';
 import { AnimatePresence } from 'framer-motion';
 
-const PublishedPages = React.lazy(() => import('@pages/published'));
+import { Loading, NotFound } from '@components';
+import { createRoutes } from '@helpers/utils/createRoutes';
 
+const PublishedPages = React.lazy(() => import('@pages/published'));
 
 export const RouteEntryPoint: React.FunctionComponent = () => {
     const location = useLocation();

@@ -1,9 +1,11 @@
 import React from 'react';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
+
+import { Routes } from '@helpers/constants';
 
 import './button.style.scss';
-import { Link } from 'react-router-dom';
-import { Routes } from '@helpers/constants';
+
 
 interface Props {
     children: React.ReactNode,
@@ -24,7 +26,8 @@ function Button({
                     isDisable,
                     onClick,
                 }: Props) {
-    return <button className={clsx('button', className, { disabled: isDisable })} disabled={isDisable}
+    return <button className={clsx('button', className, { disabled: isDisable })}
+                   disabled={isDisable}
                    onClick={onClick}>{children}</button>;
 }
 

@@ -19,7 +19,8 @@ const variants = {
 };
 
 export const Cart: React.FunctionComponent<Props> = ({
-                                                         className, item,
+                                                         item,
+                                                         className,
                                                          handlerRemoveItem,
                                                      }) => {
     const [isChecked, setIsChecked] = React.useState<boolean>(false);
@@ -40,7 +41,8 @@ export const Cart: React.FunctionComponent<Props> = ({
                 <button className='cart-footer__btn cart-footer__btn--remove' onClick={onClick} />
                 <label>
                     <input type='checkbox' className='cart-footer__btn--checkbox'
-                           onChange={() => setIsChecked(!isChecked)} checked={isChecked} />
+                           checked={isChecked}
+                           onChange={() => setIsChecked(!isChecked)} />
                     <span className='cart-footer__btn cart-footer__btn' />
                 </label>
             </div>

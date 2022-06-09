@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
+
 import type { Dashboard } from '__types__/dashboard';
 
 export class UserService {
