@@ -8,6 +8,7 @@
   position: relative;
   @media (max-width: 420px) {
     padding: 20px 0;
+    min-width: 0;
   }
 
   &__title {
@@ -44,7 +45,8 @@
 
     &__content {
       position: relative;
-      overflow: auto;
+      overflow-y: auto;
+      overflow-x: hidden;
       height: 550px;
       display: flex;
       flex-direction: column;

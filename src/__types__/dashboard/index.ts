@@ -5,3 +5,5 @@ export interface Dashboard {
     title: string,
     users: User[],
 }
+
+export type Filter = keyof Omit<User, 'id'> | 'all';

@@ -13,9 +13,9 @@ interface Props {
 }
 
 const variants = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { scale: .7, opacity: 0 },
+    initial: { opacity: 0, scale: 1 },
+    animate: { opacity: 1, scale: [1.08, 1] },
+    exit: { scale: .6, originX: 3, opacity: 0, transition: { duration: .3 } },
 };
 
 export const Cart: React.FunctionComponent<Props> = ({
