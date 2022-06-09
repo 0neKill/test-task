@@ -8,7 +8,7 @@
     "dev": "webpack --env mode=development",
     "build": "webpack --env mode=production"
   },
-  "author": "Alex",
+  "author": "Alexander (sanbel2015@yandex.ru)",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2",
