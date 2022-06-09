@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Dashboard, Loading } from '@components';
+import { UserService } from '@services';
 
 import type { Dashboard as IDashboard } from '__types__/dashboard';
-import { UserService } from '@services';
 
 export const Users: React.FunctionComponent = () => {
 
@@ -23,11 +23,12 @@ export const Users: React.FunctionComponent = () => {
         <section className='users'>
             {
                 !loading ?
-                    dashboards.map(dash => (
+                    dashboards.map((dash, index) => (
                         <Dashboard
                             key={dash.id}
                             title={dash.title}
                             items={dash.users}
+                            index={index}
                         />
                     )) : <Loading />
             }

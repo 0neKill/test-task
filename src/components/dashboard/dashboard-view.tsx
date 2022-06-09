@@ -1,6 +1,7 @@
 import React from 'react';
 import { User } from '__types__/user';
 import { Cart, Input, Modal } from '@components';
+import { AnimatePresence, motion } from 'framer-motion';
 
 type Filter = keyof Omit<User, 'id'>;
 
@@ -9,13 +10,23 @@ interface PropsComponent {
     title: string,
     handlerEditCartData: (cartData: User) => void,
     handlerRemoveItem: (id: string) => void,
+    index: number
 }
+
+const variant = {
+    initial: { opacity: 0 },
+    animate: (index: number) => ({
+        opacity: 1,
+        transition: { delay: index * .2, type: 'spring' },
+    }),
+};
 
 export const DashboardView: React.FunctionComponent<PropsComponent> = ({
                                                                            items,
                                                                            handlerRemoveItem,
                                                                            handlerEditCartData,
                                                                            title,
+                                                                           index,
                                                                        }) => {
     const [carts, setCarts] = React.useState<User[]>([]);
     const [searchTerm, setSearchTerm] = React.useState<string>('');
@@ -63,7 +74,7 @@ export const DashboardView: React.FunctionComponent<PropsComponent> = ({
     };
 
     return (
-        <div className='dashboard'>
+        <motion.div className='dashboard' variants={variant} initial='initial' animate='animate' custom={index}>
             <h2 className='dashboard__title'>{title}</h2>
             <div className='dashboard-container'>
                 <div className='dashboard-container__options'>
@@ -80,13 +91,15 @@ export const DashboardView: React.FunctionComponent<PropsComponent> = ({
                 {
                     isPending ? 'Загрузка данных' : (
                         <div className='dashboard-container__content'>
-                            {
-                                carts.length ? (
-                                    carts.map(item => (
-                                        <Cart key={item.id} item={item} handlerRemoveItem={handlerRemoveItem} />
-                                    ))
-                                ) : 'Список пользователей пуст'
-                            }
+                            <AnimatePresence>
+                                {
+                                    carts.length ? (
+                                        carts.map((item) => (
+                                            <Cart key={item.id} item={item} handlerRemoveItem={handlerRemoveItem} />
+                                        ))
+                                    ) : 'Список пользователей пуст'
+                                }
+                            </AnimatePresence>
                         </div>
                     )
                 }
@@ -97,6 +110,6 @@ export const DashboardView: React.FunctionComponent<PropsComponent> = ({
                     <button className='dashboard-footer__btn'>Добавить пользователя</button>
                 </Modal>
             </div>
-        </div>
+        </motion.div>
     );
 };

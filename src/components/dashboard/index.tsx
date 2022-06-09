@@ -9,11 +9,12 @@ import { DashboardView } from './dashboard-view';
 interface Props {
     items: Array<User>,
     title: string,
+    index: number,
 }
 
 
 export default function Dashboard({
-                                      items, title,
+                                      items, title, index,
                                   }: Props) {
     const [carts, setCarts] = React.useState<User[]>(items);
 
@@ -26,6 +27,7 @@ export default function Dashboard({
     };
 
     return <DashboardView title={title}
+                          index={index}
                           items={carts}
                           handlerRemoveItem={handlerRemoveItem}
                           handlerEditCartData={handlerEditCartData} />;
