@@ -6,6 +6,9 @@
   background-color: #F2F2F2;
   box-shadow: 0 4px 4px rgba(0, 0, 0, .1);
   position: relative;
+  @media (max-width: 420px) {
+    padding: 20px 0;
+  }
 
   &__title {
     color: #000000;
