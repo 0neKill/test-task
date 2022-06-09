@@ -1,0 +1,59 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  max-width: 700px;
+  padding: 30px;
+  gap: 30px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, .5);
+  margin: 100px auto;
+  @media (max-width: 430px) {
+    margin: 0;
+    border-radius: 0;
+    height: 100vh;
+    padding-left: 0;
+    padding-right: 0;
+    justify-content: center;
+  }
+
+  &__title {
+    color: #000000;
+    font-size: 60px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    @media (max-width: 675px) {
+      font-size: 45px;
+    }
+    @media (max-width: 540px) {
+      font-size: 35px;
+    }
+    @media (max-width: 430px) {
+      font-size: 25px;
+    }
+  }
+
+  &__subtitle {
+    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    @media (max-width: 540px) {
+      font-size: 25px;
+    }
+    @media (max-width: 430px) {
+      font-size: 16px;
+    }
+  }
+
+  &__email {
+    font-size: 16px;
+    font-weight: 400;
+    @media (max-width: 430px) {
+      font-size: 13px;
+    }
+    @media (max-width: 360px) {
+      text-align: center;
+    }
+  }
+}

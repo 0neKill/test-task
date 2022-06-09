@@ -2,6 +2,8 @@ import React from 'react';
 import clsx from 'clsx';
 
 import './button.style.scss';
+import { Link } from 'react-router-dom';
+import { Routes } from '@helpers/constants';
 
 interface Props {
     children: React.ReactNode,
@@ -10,11 +12,27 @@ interface Props {
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void,
 }
 
-export const Button: React.FunctionComponent<Props> = React.memo(({
-                                                                      className,
-                                                                      children,
-                                                                      isDisable,
-                                                                      onClick,
-                                                                  }) => {
-    return <button className={clsx('button', className, { disabled: isDisable })} disabled={isDisable} onClick={onClick}>{children}</button>;
-});
+interface PropsButtonLink {
+    children: React.ReactNode,
+    path: Routes,
+    className?: string,
+}
+
+function Button({
+                    className,
+                    children,
+                    isDisable,
+                    onClick,
+                }: Props) {
+    return <button className={clsx('button', className, { disabled: isDisable })} disabled={isDisable}
+                   onClick={onClick}>{children}</button>;
+}
+
+
+Button.Link = function ButtonLink({ children, path, className }: PropsButtonLink) {
+    return <Link to={path} className={clsx('button button--link', className)}>
+        {children}
+    </Link>;
+};
+
+export default Button;
