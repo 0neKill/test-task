@@ -1,7 +1,8 @@
 import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
-import { Cart, Input, Modal } from '@components';
+import { Cart, Input, Model } from '@components';
+import { variantDashboard } from '@helpers/animations';
 
 import type { User } from '__types__/user';
 import type { Filter } from '__types__/dashboard';
@@ -20,13 +21,6 @@ interface PropsComponent {
     handlerOnSelectFilter: (e: React.ChangeEvent<HTMLSelectElement>) => void,
 }
 
-const variant = {
-    initial: { opacity: 0 },
-    animate: (index: number) => ({
-        opacity: 1,
-        transition: { delay: index * .2, type: 'spring' },
-    }),
-};
 
 export const DashboardComponent: React.FunctionComponent<PropsComponent> = ({
                                                                                 items,
@@ -40,11 +34,9 @@ export const DashboardComponent: React.FunctionComponent<PropsComponent> = ({
                                                                                 handlerEditCartData,
                                                                                 handlerOnSelectFilter,
                                                                             }) => {
-
-
         return (
             <motion.div className='dashboard'
-                        variants={variant}
+                        variants={variantDashboard}
                         initial='initial'
                         animate='animate'
                         custom={index}>
@@ -85,9 +77,9 @@ export const DashboardComponent: React.FunctionComponent<PropsComponent> = ({
 
                 </div>
                 <div className='dashboard-footer'>
-                    <Modal handlerOnSubmit={handlerEditCartData}>
+                    <Model handlerOnSubmit={handlerEditCartData}>
                         <button className='dashboard-footer__btn'>Добавить пользователя</button>
-                    </Modal>
+                    </Model>
                 </div>
             </motion.div>
         );

@@ -2,6 +2,8 @@ import React from 'react';
 import clsx from 'clsx';
 import { motion } from 'framer-motion';
 
+import { variantsCart } from '@helpers/animations';
+
 import './cart.style.scss';
 
 import type { User } from '__types__/user';
@@ -11,12 +13,6 @@ interface Props {
     item: User,
     handlerRemoveItem: (id: string) => void,
 }
-
-const variants = {
-    initial: { opacity: 0, scale: 1 },
-    animate: { opacity: 1, scale: [1.08, 1] },
-    exit: { scale: .6, originX: 3, opacity: 0, transition: { duration: .3 } },
-};
 
 export const Cart: React.FunctionComponent<Props> = ({
                                                          item,
@@ -31,7 +27,7 @@ export const Cart: React.FunctionComponent<Props> = ({
     };
 
     return (
-        <motion.div className={clsx('cart', className, { active: isChecked })} {...variants}>
+        <motion.div className={clsx('cart', className, { active: isChecked })} {...variantsCart}>
             <div className='cart-main'>
                 <p className='cart-main__title cart-main__title--name'>{item.name}</p>
                 <p className='cart-main__title cart-main__title--email'>{item.email}</p>
