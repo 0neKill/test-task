@@ -5,7 +5,7 @@ import { Cart, Input, Model } from '@components';
 import { variantDashboard } from '@helpers/animations';
 
 import type { User } from '__types__/user';
-import type { Filter } from '__types__/dashboard';
+import type { ConvertForModel, Filter } from '__types__/dashboard';
 
 
 interface PropsComponent {
@@ -15,7 +15,7 @@ interface PropsComponent {
     isPending: boolean,
     filterTerm: Filter,
     searchTerm: string,
-    handlerEditCartData: (cartData: User) => void,
+    handlerEditCartData: (data: User) => void,
     handlerRemoveItem: (id: string) => void,
     handlerSearch: (event: React.ChangeEvent<HTMLInputElement>) => void,
     handlerOnSelectFilter: (e: React.ChangeEvent<HTMLSelectElement>) => void,
@@ -77,9 +77,9 @@ export const DashboardComponent: React.FunctionComponent<PropsComponent> = ({
 
                 </div>
                 <div className='dashboard-footer'>
-                    <Model handlerOnSubmit={handlerEditCartData}>
+                    <Model.Cart handlerOnSubmit={handlerEditCartData as ConvertForModel}>
                         <button className='dashboard-footer__btn'>Добавить пользователя</button>
-                    </Model>
+                    </Model.Cart>
                 </div>
             </motion.div>
         );

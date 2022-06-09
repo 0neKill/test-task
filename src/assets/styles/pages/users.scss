@@ -1,15 +1,36 @@
 .users {
+  position: relative;
   display: flex;
   padding: 50px;
   gap: 40px;
   height: 100%;
   overflow-x: auto;
 
+  &__option {
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    z-index: 10;
+    top: 35px;
+    left: 40px;
+
+    button {
+      border-radius: 100%;
+      padding: 0;
+    }
+
+    @media (max-width: 420px) {
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
   @media (max-width: 600px) {
     flex-direction: column;
   }
 
   @media (max-width: 420px) {
-    padding: 0;
+    padding: 60px 0 0;
   }
 }

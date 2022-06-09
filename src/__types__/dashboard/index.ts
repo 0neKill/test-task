@@ -7,3 +7,4 @@ export interface Dashboard {
 }
 
 export type Filter = keyof Omit<User, 'id'> | 'all';
+export type ConvertForModel = (data: User | Dashboard) => void;

@@ -3,58 +3,36 @@ import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { useOutsideClick } from '@hooks';
-import { Input, Button } from '@components';
 import { variantsModel } from '@helpers/animations';
+
+import { CartModel } from './items/cart';
+import { DashboardModel } from './items/dashboard';
 
 import './modal.style.scss';
 
-import type { Cart } from '__types__/cart';
 import type { User } from '__types__/user';
+import { Dashboard } from '__types__/dashboard';
 
 interface Props {
     children: React.ReactElement,
-    handlerOnSubmit: (cartData: User) => void,
+    handlerOnSubmit: (data: User | Dashboard) => void,
+    elementForOpen: React.ReactElement,
 }
 
-export const Model: React.FunctionComponent<Props> = ({
-                                                          children,
-                                                          handlerOnSubmit,
-                                                      }) => {
-
+const ModelTemplate: React.FunctionComponent<Omit<Props, 'handlerOnSubmit'>> = ({
+                                                                                    children,
+                                                                                    elementForOpen,
+                                                                                }) => {
     const { visible, handlerClick, refElementClick } = useOutsideClick(false);
-
-    const [cartData, setCartData] = React.useState<Cart>({ name: '', email: '', phone: '' });
-
-    const isDisable = !(Object.values(cartData).every(val => val.trim() !== ''));
-
-    const handlerChange = (id: keyof Cart) => (event: React.ChangeEvent<HTMLInputElement>) => {
-        setCartData(obj => {
-            return {
-                ...obj,
-                [id]: event.target.value,
-            };
-        });
-    };
-
-    const onSubmit = () => {
-        clearStateAndCloseModel();
-        handlerOnSubmit({ ...cartData, id: new Date().toString() });
-    };
-
-    const clearStateAndCloseModel = () => {
-        setCartData({ name: '', email: '', phone: '' });
-        handlerClick();
-    };
 
     React.useEffect(() => {
         if (visible) document.body.classList.add('no-scroll');
         return () => document.body.classList.remove('no-scroll');
     }, [visible]);
 
-
     return (
         <>
-            {React.cloneElement(children, { onClick: handlerClick })}
+            {React.cloneElement(elementForOpen, { onClick: handlerClick })}
             {
                 createPortal(
                     <AnimatePresence>
@@ -85,20 +63,7 @@ export const Model: React.FunctionComponent<Props> = ({
                                                     <button className='model__exit'
                                                             onClick={handlerClick} />
                                                 </div>
-                                                <div className='model__container'>
-                                                    <Input className='model__input'
-                                                           placeholder='Введите имя' value={cartData.name}
-                                                           onChange={handlerChange('name')} />
-                                                    <Input className='model__input'
-                                                           placeholder='Введите E-mail' value={cartData.email}
-                                                           onChange={handlerChange('email')} />
-                                                    <Input className='model__input'
-                                                           placeholder='Введите телефон' value={cartData.phone}
-                                                           onChange={handlerChange('phone')} />
-                                                    <Button className='model__btn' isDisable={isDisable} onClick={onSubmit}>Добавить
-                                                        пользователя</Button>
-                                                </div>
-
+                                                {React.cloneElement(children, { closeModal: handlerClick })}
                                             </motion.div>
                                         </div>
                                     </div>
@@ -110,4 +75,23 @@ export const Model: React.FunctionComponent<Props> = ({
             }
         </>
     );
+};
+
+export const Model = {
+    Cart: ({
+               handlerOnSubmit,
+               children,
+           }: Omit<Props, 'elementForOpen'>) => (
+        <ModelTemplate elementForOpen={children}>
+            <CartModel handlerOnSubmit={handlerOnSubmit} />
+        </ModelTemplate>
+    ),
+    Dashboard: ({
+                    handlerOnSubmit,
+                    children,
+                }: Omit<Props, 'elementForOpen'>) => (
+        <ModelTemplate elementForOpen={children}>
+            <DashboardModel handlerOnSubmit={handlerOnSubmit} />
+        </ModelTemplate>
+    ),
 };
