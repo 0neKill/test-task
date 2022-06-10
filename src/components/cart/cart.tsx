@@ -27,7 +27,7 @@ export const Cart: React.FunctionComponent<Props> = ({
     };
 
     return (
-        <motion.div className={clsx('cart', className, { active: isChecked })} {...variantsCart}>
+        <motion.div className={clsx('cart', className, { active: isChecked })} {...variantsCart} >
             <div className='cart-main'>
                 <p className='cart-main__title cart-main__title--name'>{item.name}</p>
                 <p className='cart-main__title cart-main__title--email'>{item.email}</p>
